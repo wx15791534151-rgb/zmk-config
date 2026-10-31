@@ -1,0 +1,35 @@
+/*
+ * numpad12 —— 12 键数字小键盘，直连式
+ *
+ * 接线：每个按键，一端接下面的 ProMicro 引脚，另一端接 GND。
+ *       不需要二极管，不需要矩阵扫描。
+ *       内部上拉已开启，按下读到低电平。
+ *
+ * 引脚顺序 = keymap 里按键的顺序，改接线就改这里的顺序。
+ */
+
+/ {
+    chosen {
+        zmk,kscan = &kscan0;
+    };
+
+    kscan0: kscan {
+        compatible = "zmk,kscan-gpio-direct";
+        wakeup-source;
+
+        input-gpios
+            = <&pro_micro 0  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   /* D0  */
+            , <&pro_micro 1  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   /* D1  */
+            , <&pro_micro 2  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   /* D2  */
+            , <&pro_micro 3  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   /* D3  */
+            , <&pro_micro 4  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   /* D4  */
+            , <&pro_micro 5  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   /* D5  */
+            , <&pro_micro 6  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   /* D6  */
+            , <&pro_micro 7  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   /* D7  */
+            , <&pro_micro 8  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   /* D8  */
+            , <&pro_micro 9  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   /* D9  */
+            , <&pro_micro 10 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   /* D10 */
+            , <&pro_micro 14 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   /* D14 */
+            ;
+    };
+};
