@@ -1,0 +1,55 @@
+/*
+ * leftpad —— 左手 4x4 矩阵小键盘（16 键）
+ *
+ * 矩阵接法：diode-direction = "col2row"
+ *   列线(C) 输出高电平 → 按键 → 二极管(阳极朝列) → 行线(R) 读高电平
+ *
+ * 行 R0..R3 = D0,D1,D2,D3 = 丝印 008,006,017,020
+ * 列 C0..C3 = D4,D5,D6,D7 = 丝印 022,024,100,011
+ */
+
+#include <dt-bindings/zmk/matrix_transform.h>
+#include "leftpad-layouts.dtsi"
+
+&physical_layout0 {
+    transform = <&default_transform>;
+};
+
+/ {
+    chosen {
+        zmk,kscan = &kscan0;
+        zmk,physical-layout = &physical_layout0;
+    };
+
+    default_transform: default_transform {
+        compatible = "zmk,matrix-transform";
+        columns = <4>;
+        rows = <4>;
+        map = <
+            RC(0,0) RC(0,1) RC(0,2) RC(0,3)
+            RC(1,0) RC(1,1) RC(1,2) RC(1,3)
+            RC(2,0) RC(2,1) RC(2,2) RC(2,3)
+            RC(3,0) RC(3,1) RC(3,2) RC(3,3)
+            >;
+    };
+
+    kscan0: kscan {
+        compatible = "zmk,kscan-gpio-matrix";
+        wakeup-source;
+        diode-direction = "col2row";
+
+        row-gpios
+            = <&pro_micro 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&pro_micro 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&pro_micro 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&pro_micro 3 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            ;
+
+        col-gpios
+            = <&pro_micro 4 GPIO_ACTIVE_HIGH>
+            , <&pro_micro 5 GPIO_ACTIVE_HIGH>
+            , <&pro_micro 6 GPIO_ACTIVE_HIGH>
+            , <&pro_micro 7 GPIO_ACTIVE_HIGH>
+            ;
+    };
+};

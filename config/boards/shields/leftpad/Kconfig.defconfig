@@ -1,0 +1,6 @@
+if SHIELD_LEFTPAD
+
+config ZMK_KEYBOARD_NAME
+    default "LeftPad"
+
+endif

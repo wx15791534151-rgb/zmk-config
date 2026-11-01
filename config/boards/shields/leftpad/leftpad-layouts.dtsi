@@ -1,0 +1,32 @@
+/*
+ * 每个键在"图纸"上的位置，只影响 ZMK Studio / 键位图显示，不影响功能。
+ * 四行四列，每格 100x100。
+ */
+
+#include <physical_layouts.dtsi>
+
+/ {
+    physical_layout0: physical_layout_0 {
+        compatible = "zmk,physical-layout";
+        display-name = "LeftPad 4x4";
+
+        keys
+            = <&key_physical_attrs 100 100    0    0    0 0 0>
+            , <&key_physical_attrs 100 100  100    0    0 0 0>
+            , <&key_physical_attrs 100 100  200    0    0 0 0>
+            , <&key_physical_attrs 100 100  300    0    0 0 0>
+            , <&key_physical_attrs 100 100    0  100    0 0 0>
+            , <&key_physical_attrs 100 100  100  100    0 0 0>
+            , <&key_physical_attrs 100 100  200  100    0 0 0>
+            , <&key_physical_attrs 100 100  300  100    0 0 0>
+            , <&key_physical_attrs 100 100    0  200    0 0 0>
+            , <&key_physical_attrs 100 100  100  200    0 0 0>
+            , <&key_physical_attrs 100 100  200  200    0 0 0>
+            , <&key_physical_attrs 100 100  300  200    0 0 0>
+            , <&key_physical_attrs 100 100    0  300    0 0 0>
+            , <&key_physical_attrs 100 100  100  300    0 0 0>
+            , <&key_physical_attrs 100 100  200  300    0 0 0>
+            , <&key_physical_attrs 100 100  300  300    0 0 0>
+            ;
+    };
+};
