@@ -1,15 +1,18 @@
 ---
-# ZMK 构建矩阵：GitHub Actions 按这个列表编译
-#
-# ★注意 board 写法：ZMK 2025-12 之后（Zephyr 4.1 迁移）已经把 nice_nano_v2 合并掉了，
-#   现在写 nice_nano//zmk（等价于 nice_nano@2.0.0/nrf52840/zmk）。
-#   网上 90% 的教程还写 nice_nano_v2，在最新 ZMK 上会编译失败。
+# ZMK 构建矩阵
+# ZMK 2025-12 之后 board 写作 nice_nano//zmk（旧写法 nice_nano_v2 已废弃）
 include:
+  # 4x4 矩阵左手小键盘（正式版）
+  - board: nice_nano//zmk
+    shield: leftpad
+    artifact-name: leftpad
+
+  # 12 键直连版（保留，可用于对比测试）
   - board: nice_nano//zmk
     shield: numpad12
     artifact-name: numpad12
 
-  # 备用固件：清空蓝牙配对信息。键盘连不上电脑时刷这个再重新配对。
+  # 清空蓝牙配对信息（连不上电脑时刷这个）
   - board: nice_nano//zmk
     shield: settings_reset
     artifact-name: settings_reset
